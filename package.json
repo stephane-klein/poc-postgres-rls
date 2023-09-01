@@ -1,0 +1,13 @@
+{
+  "name": "poc-jest-postgresjs",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
+  },
+  "dependencies": {
+    "jest": "29.6.4",
+    "js-yaml": "^4.1.0",
+    "postgres": "3.3.5"
+  }
+}
