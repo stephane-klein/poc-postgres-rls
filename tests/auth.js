@@ -1,12 +1,14 @@
 import postgres from 'postgres';
+import fixture from '../load-fixtures.js';
 
 let sql;
 
 
-beforeAll(() => {
+beforeAll(async () => {
     sql = postgres(
         'postgres://postgres:password@localhost:5432/postgres'
     );
+    await fixture(sql);
 });
 afterAll(() => {
     sql.end()
