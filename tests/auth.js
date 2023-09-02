@@ -51,7 +51,7 @@ describe('When user 1 request the list of invoices', () => {
                 SELECT
                     user_id,
                     'username_' || TO_CHAR(user_id, 'FM0000')
-                FROM GENERATE_SERIES(1, 1000) AS user_id
+                FROM GENERATE_SERIES(1, 100) AS user_id
             );
 
             INSERT INTO invoices (date, user_id)
@@ -60,19 +60,36 @@ describe('When user 1 request the list of invoices', () => {
                     CURRENT_DATE + seq AS date,
                     user_id
                 FROM
-                    GENERATE_SERIES(1, 2000) AS seq,
-                    GENERATE_SERIES(1, 1000) AS user_id
+                    GENERATE_SERIES(1, 200) AS seq,
+                    GENERATE_SERIES(1, 100) AS user_id
             );
 
             ALTER TABLE public.invoices ADD CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES public.users (id) ON DELETE CASCADE;
             CREATE INDEX invoices_user_id_index ON public.invoices (user_id);
+            ANALYZE;
         `.simple();
+
+        result = await sql.begin((sql) => [
+                sql`EXPLAIN (ANALYZE TRUE, FORMAT JSON) SELECT COUNT(*)::INTEGER FROM public.invoices WHERE user_id=10`
+        ]);
+        const admin_execution_time = result.at(-1)[0]['QUERY PLAN'][0]['Execution Time'];
+
+        expect(
+            result.at(-1)[0]['QUERY PLAN'][0]['Plan']['Plans'][0]['Node Type']
+        ).toBe('Index Only Scan');
 
         result = await sql.begin((sql) => [
                 sql`SET LOCAL auth.user_id = 10`,
                 sql`SET ROLE TO application_user`,
                 sql`EXPLAIN (ANALYZE TRUE, FORMAT JSON) SELECT COUNT(*)::INTEGER FROM public.invoices`
         ]);
+        const user_execution_time = result.at(-1)[0]['QUERY PLAN'][0]['Execution Time'];
+
+        expect(
+            // Computes the time difference as a percentage
+            100 * Math.abs((admin_execution_time - user_execution_time) / ((admin_execution_time + user_execution_time)/2 ))
+        ).toBeLessThan(80); // in percent
+
         expect(
             result.at(-1)[0]['QUERY PLAN'][0]['Plan']['Plans'][0]['Node Type']
         ).toBe('Index Only Scan');
