@@ -21,6 +21,7 @@ async function main(sql) {
             await sql`INSERT INTO invoices ${sql({date: invoice.date, user_id: user.id})}`;
         }
     }
+    await sql`ANALYZE`;
 }
 
 if (__filename === process.argv[1]) {
