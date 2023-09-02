@@ -10,6 +10,8 @@ const sql = postgres(
 );
 
 await sql`TRUNCATE users, invoices`;
+await sql`ALTER SEQUENCE invoices_id_seq RESTART WITH 1`;
+await sql`ALTER SEQUENCE users_id_seq RESTART WITH 1`;
 for await (const user of data.users) {
     await sql`INSERT INTO users ${sql(user, 'id', 'username')}`;
 

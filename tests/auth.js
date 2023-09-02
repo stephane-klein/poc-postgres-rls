@@ -21,8 +21,9 @@ test('admin user count invoices', async () => {
 test('application_user count invoices', async () => {
     expect(
         (await sql.begin((sql) => [
+            sql`SET LOCAL auth.user_id = 1`,
             sql`SET ROLE TO application_user`,
             sql`SELECT COUNT(*)::INTEGER FROM public.invoices`
         ])).at(-1)[0].count
-    ).toBe(1);
+    ).toBe(6);
 });

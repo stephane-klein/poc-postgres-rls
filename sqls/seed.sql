@@ -40,5 +40,5 @@ CREATE POLICY invoice_owner
     FOR SELECT
     TO application_user
     USING(
-        id=1
+        user_id=CURRENT_SETTING('auth.user_id', TRUE)::INTEGER
     );
