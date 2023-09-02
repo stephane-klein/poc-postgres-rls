@@ -12,6 +12,7 @@ CREATE TABLE public.invoices (
 
     CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES public.users (id) ON DELETE CASCADE
 );
+CREATE INDEX invoices_user_id_index ON public.invoices (user_id);
 
 CREATE OR REPLACE FUNCTION create_role_if_not_exists(rolename NAME) RETURNS TEXT AS
 $$
