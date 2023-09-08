@@ -1,5 +1,9 @@
 # POC PostgreSQL RLS
 
+Resources:
+
+- RLS: [Row-Level Security](https://www.postgresql.org/docs/15/ddl-rowsecurity.html)
+
 ```sh
 $ asdf install
 $ pnpm install
