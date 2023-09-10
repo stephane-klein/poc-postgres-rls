@@ -27,6 +27,7 @@ console.log(
 );
 
 const reserve = await sql.reserve();
+const reserve2 = await sql.reserve();
 
 await reserve`
     SELECT
@@ -42,6 +43,25 @@ await reserve`
         );
 `;
 
+console.log('reserve1');
+console.log(
+    await reserve`
+        SELECT
+            current_setting('auth.session_id', TRUE) AS session_id,
+            current_setting('auth.user_id', TRUE) AS user_id;
+    `
+);
+
+console.log('reserve2');
+console.log(
+    await reserve2`
+        SELECT
+            current_setting('auth.session_id', TRUE) AS session_id,
+            current_setting('auth.user_id', TRUE) AS user_id;
+    `
+);
+
+console.log('reserve1');
 console.log(
     await reserve`
         SELECT
@@ -50,4 +70,5 @@ console.log(
     `
 );
 reserve.release();
+reserve2.release();
 sql.end();
