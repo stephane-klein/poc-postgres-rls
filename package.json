@@ -7,7 +7,7 @@
   },
   "dependencies": {
     "jest": "29.6.4",
-    "js-yaml": "^4.1.0",
-    "postgres": "3.3.5"
+    "js-yaml": "4.1.0",
+		"postgres": "https://github.com/stephane-klein/postgres/archive/3a7e99f68c94827a901d901e22eb5ff45deda85d.tar.gz"
   }
 }

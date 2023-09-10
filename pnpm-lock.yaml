@@ -9,11 +9,11 @@ dependencies:
     specifier: 29.6.4
     version: 29.6.4
   js-yaml:
-    specifier: ^4.1.0
+    specifier: 4.1.0
     version: 4.1.0
   postgres:
-    specifier: 3.3.5
-    version: 3.3.5
+    specifier: https://github.com/stephane-klein/postgres/archive/3a7e99f68c94827a901d901e22eb5ff45deda85d.tar.gz
+    version: '@github.com/stephane-klein/postgres/archive/3a7e99f68c94827a901d901e22eb5ff45deda85d.tar.gz'
 
 packages:
 
@@ -1934,10 +1934,6 @@ packages:
       find-up: 4.1.0
     dev: false
 
-  /postgres@3.3.5:
-    resolution: {integrity: sha512-+JD93VELV9gHkqpV5gdL5/70HdGtEw4/XE1S4BC8f1mcPmdib3K5XsKVbnR1XcAyC41zOnifJ+9YRKxdIsXiUw==}
-    dev: false
-
   /pretty-format@29.6.3:
     resolution: {integrity: sha512-ZsBgjVhFAj5KeK+nHfF1305/By3lechHQSMWCTl8iHSbfOm2TN5nHEtFc/+W7fAyUeCs2n5iow72gld4gW0xDw==}
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
@@ -2244,4 +2240,10 @@ packages:
   /yocto-queue@0.1.0:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
+    dev: false
+
+  '@github.com/stephane-klein/postgres/archive/3a7e99f68c94827a901d901e22eb5ff45deda85d.tar.gz':
+    resolution: {tarball: https://github.com/stephane-klein/postgres/archive/3a7e99f68c94827a901d901e22eb5ff45deda85d.tar.gz}
+    name: postgres
+    version: 3.3.5
     dev: false
