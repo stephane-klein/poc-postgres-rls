@@ -7,6 +7,7 @@ CREATE TABLE public.users (
 DROP TABLE IF EXISTS public.invoices CASCADE;
 CREATE TABLE public.invoices (
     id        SERIAL PRIMARY KEY,
+    title     VARCHAR,
     date      DATE NOT NULL,
     user_id   INTEGER DEFAULT NULL,
 
@@ -29,8 +30,9 @@ LANGUAGE plpgsql;
 
 SELECT create_role_if_not_exists('application_user');
 
-GRANT ALL ON SCHEMA PUBLIC TO application_user;
-GRANT ALL ON ALL TABLES IN SCHEMA PUBLIC TO application_user;
+GRANT ALL ON SCHEMA public TO application_user;
+GRANT ALL ON ALL TABLES IN SCHEMA public TO application_user;
+GRANT ALL ON ALL SEQUENCES IN SCHEMA public TO application_user;
 
 ALTER TABLE public.users ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.invoices ENABLE ROW LEVEL SECURITY;
@@ -39,6 +41,36 @@ CREATE POLICY invoice_owner
     ON public.invoices
     AS PERMISSIVE
     FOR SELECT
+    TO application_user
+    USING(
+        user_id=CURRENT_SETTING('auth.user_id', TRUE)::INTEGER
+    );
+
+CREATE POLICY invoice_insert
+    ON public.invoices
+    AS PERMISSIVE
+    FOR INSERT
+    TO application_user
+    WITH CHECK (
+        invoices.user_id = CURRENT_SETTING('auth.user_id', TRUE)::INTEGER
+    );
+
+CREATE POLICY invoice_update
+    ON public.invoices
+    AS PERMISSIVE
+    FOR UPDATE
+    TO application_user
+    USING(
+        user_id=CURRENT_SETTING('auth.user_id', TRUE)::INTEGER
+    )
+    WITH CHECK (
+        invoices.user_id = CURRENT_SETTING('auth.user_id', TRUE)::INTEGER
+    );
+
+CREATE POLICY invoice_delete
+    ON public.invoices
+    AS PERMISSIVE
+    FOR DELETE
     TO application_user
     USING(
         user_id=CURRENT_SETTING('auth.user_id', TRUE)::INTEGER

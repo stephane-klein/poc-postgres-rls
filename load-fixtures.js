@@ -18,7 +18,14 @@ async function main(sql) {
         await sql`INSERT INTO users ${sql(user, 'id', 'username')}`;
 
         for await (const invoice of user.invoices) {
-            await sql`INSERT INTO invoices ${sql({date: invoice.date, user_id: user.id})}`;
+            await sql`
+                INSERT INTO invoices
+                ${sql({
+                    date: invoice.date,
+                    title: invoice.title,
+                    user_id: user.id
+                })}`
+            ;
         }
     }
     await sql`ANALYZE`;

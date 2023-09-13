@@ -95,3 +95,56 @@ describe('When user 1 request the list of invoices', () => {
         ).toBe('Index Only Scan');
     });
 });
+
+describe("When user 1 is connected", () => {
+    it("User 1 should be able to insert a new Invoice", async() => {
+        await fixture(sql);
+        const result = await sql.begin((sql) => [
+                sql`SET LOCAL auth.user_id = 1`,
+                sql`SET ROLE TO application_user`,
+                sql`
+                    INSERT INTO invoices
+                    (
+                        date,
+                        user_id
+                    )
+                    VALUES(
+                        NOW(),
+                        1
+                    ) RETURNING id
+                `
+        ]);
+        expect(result.at(-1)[0].id).toBe(73);
+    });
+    it("User 1 should be able to update own Invoice", async() => {
+        await fixture(sql);
+        const result = await sql.begin((sql) => [
+                sql`SET LOCAL auth.user_id = 1`,
+                sql`SET ROLE TO application_user`,
+                sql`
+                    UPDATE invoices
+                    SET title='Foobar'
+                    WHERE id=1
+                `,
+                sql`
+                    SELECT title FROM invoices WHERE id=1
+                `
+        ]);
+        expect(result.at(-1)[0].title).toBe("Foobar");
+    });
+    it("User 1 should be able to delete own Invoice", async() => {
+        await fixture(sql);
+        const result = await sql.begin((sql) => [
+                sql`SET LOCAL auth.user_id = 1`,
+                sql`SET ROLE TO application_user`,
+                sql`
+                    DELETE FROM invoices
+                    WHERE id=1
+                `,
+                sql`
+                    SELECT COUNT(*)::INTEGER FROM invoices WHERE id=1
+                `
+        ]);
+        expect(result.at(-1)[0].count).toBe(0);
+    });
+});

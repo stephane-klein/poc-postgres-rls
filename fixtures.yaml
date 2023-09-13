@@ -3,107 +3,179 @@ users:
     username: username1
     invoices:
     - date: 2023-01-01
+      title: Invoice 1
     - date: 2023-01-02
+      title: Invoice 2
     - date: 2023-01-03
+      title: Invoice 3
     - date: 2023-01-04
+      title: Invoice 4
     - date: 2023-01-05
+      title: Invoice 5
     - date: 2023-01-06
+      title: Invoice 6
   - id: 2
     username: username2
     invoices:
     - date: 2023-01-01
+      title: Invoice 7
     - date: 2023-01-02
+      title: Invoice 8
     - date: 2023-01-03
+      title: Invoice 9
     - date: 2023-01-04
+      title: Invoice 10
     - date: 2023-01-05
+      title: Invoice 11
     - date: 2023-01-06
+      title: Invoice 12
   - id: 3
     username: username3
     invoices:
     - date: 2023-01-01
+      title: Invoice 13
     - date: 2023-01-02
+      title: Invoice 14
     - date: 2023-01-03
+      title: Invoice 15
     - date: 2023-01-04
+      title: Invoice 16
     - date: 2023-01-05
+      title: Invoice 17
     - date: 2023-01-06
+      title: Invoice 18
   - id: 4
     username: username4
     invoices:
     - date: 2023-01-01
+      title: Invoice 19
     - date: 2023-01-02
+      title: Invoice 20
     - date: 2023-01-03
+      title: Invoice 21
     - date: 2023-01-04
+      title: Invoice 22
     - date: 2023-01-05
+      title: Invoice 23
     - date: 2023-01-06
+      title: Invoice 24
   - id: 5
     username: username5
     invoices:
     - date: 2023-01-01
+      title: Invoice 25
     - date: 2023-01-02
+      title: Invoice 26
     - date: 2023-01-03
+      title: Invoice 27
     - date: 2023-01-04
+      title: Invoice 28
     - date: 2023-01-05
+      title: Invoice 29
     - date: 2023-01-06
+      title: Invoice 30
   - id: 6
     username: username6
     invoices:
     - date: 2023-01-01
+      title: Invoice 31
     - date: 2023-01-02
+      title: Invoice 32
     - date: 2023-01-03
+      title: Invoice 33
     - date: 2023-01-04
+      title: Invoice 34
     - date: 2023-01-05
+      title: Invoice 35
     - date: 2023-01-06
+      title: Invoice 36
   - id: 7
     username: username1
     invoices:
     - date: 2023-01-01
+      title: Invoice 37
     - date: 2023-01-02
+      title: Invoice 38
     - date: 2023-01-03
+      title: Invoice 39
     - date: 2023-01-04
+      title: Invoice 40
     - date: 2023-01-05
+      title: Invoice 41
     - date: 2023-01-06
+      title: Invoice 42
   - id: 8
     username: username2
     invoices:
     - date: 2023-01-01
+      title: Invoice 43
     - date: 2023-01-02
+      title: Invoice 44
     - date: 2023-01-03
+      title: Invoice 45
     - date: 2023-01-04
+      title: Invoice 46
     - date: 2023-01-05
+      title: Invoice 47
     - date: 2023-01-06
+      title: Invoice 48
   - id: 9
     username: username3
     invoices:
     - date: 2023-01-01
+      title: Invoice 49
     - date: 2023-01-02
+      title: Invoice 50
     - date: 2023-01-03
+      title: Invoice 51
     - date: 2023-01-04
+      title: Invoice 52
     - date: 2023-01-05
+      title: Invoice 53
     - date: 2023-01-06
+      title: Invoice 54
   - id: 10
     username: username4
     invoices:
     - date: 2023-01-01
+      title: Invoice 55
     - date: 2023-01-02
+      title: Invoice 56
     - date: 2023-01-03
+      title: Invoice 57
     - date: 2023-01-04
+      title: Invoice 58
     - date: 2023-01-05
+      title: Invoice 59
     - date: 2023-01-06
+      title: Invoice 60
   - id: 11
     username: username5
     invoices:
     - date: 2023-01-01
+      title: Invoice 62
     - date: 2023-01-02
+      title: Invoice 63
     - date: 2023-01-03
+      title: Invoice 64
     - date: 2023-01-04
+      title: Invoice 65
     - date: 2023-01-05
+      title: Invoice 66
     - date: 2023-01-06
+      title: Invoice 67
   - id: 12
     username: username6
     invoices:
     - date: 2023-01-01
+      title: Invoice 68
     - date: 2023-01-02
+      title: Invoice 69
     - date: 2023-01-03
+      title: Invoice 70
     - date: 2023-01-04
+      title: Invoice 71
     - date: 2023-01-05
+      title: Invoice 72
     - date: 2023-01-06
+      title: Invoice 73
